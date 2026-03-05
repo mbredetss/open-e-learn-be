@@ -7,8 +7,7 @@
     "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiam9obl9kb2UiLCJpYXQiOjE2ODAwMDAwMDAsImV4cCI6MTY4MDAwMzYwMH0.abc123",
     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInR5cGUiOiJyZWZyZXNoIiwiaWF0IjoxNjgwMDAwMDAwLCJleHAiOjE2ODA2MDQ4MDB9.xyz789"
   }
-}
-- not have data: {
+} - not have a data: {
   "status": "success",
   "message": "User registered successfully"
 }
