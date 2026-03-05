@@ -1,0 +1,260 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Open E-Learn API",
+    "description": "An e-learning system for students, lecturers, and admins. Students can register for courses, view materials, and consult with lecturers. Lecturers can upload materials and assignments. Admins can manage class schedules. Developed by Mighdad Abdul Fattah Jaba.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Mighdad Abdul Fattah Jaba",
+      "url": "https://mighdadev.web.app/",
+      "email": "mr.mighdadjaba@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Development server"
+    }
+  ],
+  "paths": {
+    "/openelearn/auth": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Authenticate user",
+        "description": "Authenticates a user with username and password, returning access and refresh tokens for subsequent API calls.",
+        "operationId": "authenticateUser",
+        "requestBody": {
+          "description": "User credentials for authentication",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["username", "password"],
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "User's username",
+                    "example": "john_doe"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "User's password",
+                    "format": "password",
+                    "example": "securePassword123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authentication successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "#/components/schemas/Status"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "accessToken": {
+                          "type": "string",
+                          "description": "JWT access token for API authorization",
+                          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiam9obl9kb2UiLCJpYXQiOjE2ODAwMDAwMDAsImV4cCI6MTY4MDAwMzYwMH0.abc123"
+                        },
+                        "refreshToken": {
+                          "type": "string",
+                          "description": "JWT refresh token for obtaining new access tokens",
+                          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInR5cGUiOiJyZWZyZXNoIiwiaWF0IjoxNjgwMDAwMDAwLCJleHAiOjE2ODA2MDQ4MDB9.xyz789"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - The request body violates the specified request body type data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": "error",
+                  "message": "\"username\" is required",
+                  "code": 400
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Username or password invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": "error",
+                  "message": "Username or password invalid",
+                  "code": 401
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/openelearn/registry": {
+      "post": {
+        "tags": ["Registration"],
+        "summary": "Register a new user",
+        "description": "Registers a new user in the system with username, email, phone, and password.",
+        "operationId": "registerUser",
+        "requestBody": {
+          "description": "New user registration details",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["username", "email", "phone", "password"],
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "Desired username for the account",
+                    "example": "john_doe"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "User's email address",
+                    "format": "email",
+                    "example": "john.doe@example.com"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "User's phone number",
+                    "example": "+6281234567890"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "User's password",
+                    "format": "password",
+                    "example": "securePassword123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Registration successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "#/components/schemas/Status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Registration message",
+                      "example": "User registered successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - The request body violates the specified request body type data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": "error",
+                  "message": "\"email\" must be a valid email",
+                  "code": 400
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict - Username has been used by another user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": "error",
+                  "message": "Username has been used by another user",
+                  "code": 409
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Status": {
+        "type": "string",
+        "description": "Response status indicator",
+        "enum": ["success", "failed"]
+      },
+      "Error": {
+        "type": "object",
+        "description": "Error response object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Error status",
+            "example": "error"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message describing what went wrong",
+            "example": "Invalid credentials provided"
+          },
+          "code": {
+            "type": "integer",
+            "description": "HTTP status code",
+            "example": 401
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "JWT access token for authentication. Include the token in the Authorization header as 'Bearer {token}'."
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "Endpoints for user authentication and token management"
+    },
+    {
+      "name": "Registration",
+      "description": "Endpoints for user registration and account creation"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+- input username
+- input email
+- input no.telp
+- input password
+- input confirm password
