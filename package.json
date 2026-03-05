@@ -1,0 +1,34 @@
+{
+  "name": "open-e-learn-be",
+  "version": "1.0.0",
+  "description": "RESTful API for open-e-learn apps",
+  "keywords": [
+    "RESTful",
+    "API",
+    "openLearn"
+  ],
+  "homepage": "https://github.com/mbredetss/open-e-learn-be#readme",
+  "bugs": {
+    "url": "https://github.com/mbredetss/open-e-learn-be/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbredetss/open-e-learn-be.git"
+  },
+  "license": "ISC",
+  "author": "mbredetss",
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon ./src/server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}
