@@ -30,5 +30,11 @@
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "nodemon": "^3.1.14"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.2",
+    "eslint-config-dicodingacademy": "^0.9.5",
+    "globals": "^17.4.0"
   }
 }
