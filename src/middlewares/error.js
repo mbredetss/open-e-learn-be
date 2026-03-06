@@ -2,7 +2,8 @@ import response from "../utils/response.js";
 
 const errorHandler = (err, req, res, next) => {
     if (err.isJoi) {
-        return response(res, 400, err.details[0].message, null);
+        const message = err.details.map(e => e.message).join(', ');
+        return response(res, 400, message, null);
     }
 
     const status = err.statusCode || err.status || 500;
