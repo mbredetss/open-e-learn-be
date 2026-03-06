@@ -17,7 +17,7 @@
     }
   ],
   "paths": {
-    "/openelearn/auth": {
+    "/auth": {
       "post": {
         "tags": ["Authentication"],
         "summary": "Authenticate user",
@@ -112,7 +112,7 @@
         }
       }
     },
-    "/openelearn/registry": {
+    "/registry": {
       "post": {
         "tags": ["Registration"],
         "summary": "Register a new user",
@@ -125,7 +125,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["username", "email", "phone", "password"],
+                "required": ["username", "email", "phone", "password", "repeat_password"],
                 "properties": {
                   "username": {
                     "type": "string",
@@ -146,6 +146,12 @@
                   "password": {
                     "type": "string",
                     "description": "User's password",
+                    "format": "password",
+                    "example": "securePassword123"
+                  },
+                  "repeat_password": {
+                    "type": "string",
+                    "description": "Password confirmation, must match the password field",
                     "format": "password",
                     "example": "securePassword123"
                   }
