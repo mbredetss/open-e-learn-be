@@ -1,6 +1,6 @@
 ### 1. Endpoint Authentication
 
-**Endpoint:** `POST /openelearn/auth`
+**Endpoint:** `POST /auth`
 **Deskripsi:** Mengautentikasi pengguna dan mengembalikan *access token* serta *refresh token*.
 
 | ID Test | Skenario Pengujian | Input Payload (Request Body) | Ekspektasi Status Code | Ekspektasi Respons |
@@ -16,7 +16,7 @@
 
 ### 2. Endpoint Registration
 
-**Endpoint:** `POST /openelearn/registry`
+**Endpoint:** `POST /registry`
 **Deskripsi:** Mendaftarkan pengguna baru dengan *username*, *email*, *phone*, dan *password*.
 
 | ID Test | Skenario Pengujian | Input Payload (Request Body) | Ekspektasi Status Code | Ekspektasi Respons |

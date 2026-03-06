@@ -2,7 +2,7 @@
 [
     {
         method: POST
-        endpoint: /openelearn/auth
+        endpoint: /auth
         req body:
         {
             username*: string, 
@@ -19,10 +19,10 @@
             username or password invalid,
             The request body violates the specified request body tipe data (give an example of an error from Joi library message)
         ]
-    }
+    }, 
     {
         method: POST
-        endpoint: /openelearn/registry
+        endpoint: /registry
         req body:
         {
             username*: string, 
@@ -40,5 +40,5 @@
             username has been used by another user, 
             The request body violates the specified request body tipe data (give an example of an error from Joi library message)
         ]
-    }
+    }, 
 ]
